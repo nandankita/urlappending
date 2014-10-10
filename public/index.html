@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Experiment-1</title>
+    <link rel="stylesheet" href="../stylesheet/bootstrap/css/bootstrap.css" />
+    <script src="../stylesheet/angular/angular.min.js"></script>
+    <script src="../features/services/controller.js"></script>
+    <script src="../stylesheet/jQuery/jquery-1.3.2.min.js"></script>
+</head>
+<body ng-app>
+    <div class="container" ng-controller="servicesCtl">
+        <h1>Bioinformatics Databases</h1>
+        <p>There are following databases available for Bioinformatics</p>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Databases</th>
+                    <th>URL</th>
+                    <th>Dropdown</th>
+                    <th>Appended URL</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="database in databases">
+                    <td>
+                        {{database.name}}
+                    </td>
+                    <td>
+                        <a target="_blank" href="{{database.url}}">{{database.url}}</a>
+                    </td>
+                     <td>
+					 <span class="nullable">
+                        <select ng-model="selectVal"  ng-options="urlOption.name for urlOption in urlOptions">
+                            <option value="">-select-</option>
+                        </select>
+						<input type="hidden" name="selectVal" value="{{ selectVal }}" />
+					</span>
+                    </td>
+                    <td>
+                        <a target="_blank" href="{{database.url}}{{ selectVal.value }}">{{database.url}}{{ selectVal.value }}</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+		<h3>NOTE: Only the first appended URL works.</h3>
+    </div>
+</body>
+</html>
